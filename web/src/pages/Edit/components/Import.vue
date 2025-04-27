@@ -34,7 +34,7 @@
       </el-upload>
       <span slot="footer" class="dialog-footer">
         <el-button @click="cancel">{{ $t('dialog.cancel') }}</el-button>
-        <el-button class="vip" type="primary" @click="confirm">{{
+        <el-button type="primary" @click="confirm">{{
           $t('dialog.confirm')
         }}</el-button>
       </span>

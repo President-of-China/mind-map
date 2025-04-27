@@ -257,6 +257,16 @@
           >
         </div>
       </div>
+      <!-- 根节点是否允许收起下级 -->
+      <div class="row">
+        <div class="rowItem">
+          <el-checkbox
+            v-model="config.rootEnableUnExpand"
+            @change="updateOtherConfig('rootEnableUnExpand', $event)"
+            >{{ $t('setting.rootEnableUnExpand') }}</el-checkbox
+          >
+        </div>
+      </div>
       <!-- 是否开启手绘风格 -->
       <div class="row vip" v-if="supportHandDrawnLikeStyle">
         <div class="rowItem">
@@ -440,6 +450,7 @@ export default {
         imgTextMargin: 0,
         textContentMargin: 0,
         enableInheritAncestorLineStyle: false,
+        rootEnableUnExpand: false,
         demonstrateConfig: {
           openBlankMode: false
         }

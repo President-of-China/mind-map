@@ -91,7 +91,8 @@ export default {
     textContentMargin: 'Node contents margin',
     enableInheritAncestorLineStyle:
       'Node connection style inherits the style of ancestor nodes',
-    enableAi: 'Is enable AI function'
+    enableAi: 'Is enable AI function',
+    rootEnableUnExpand: 'Does the root node allow the collapse of subordinates'
   },
   color: {
     moreColor: 'More color'

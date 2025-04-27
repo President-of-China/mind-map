@@ -87,7 +87,8 @@ export default {
     enableDragImport: '是否允许直接拖拽文件到页面进行导入',
     imgTextMargin: '节点图片和文本间隔',
     textContentMargin: '节点各种内容间隔',
-    enableAi: '是否开启AI功能'
+    enableAi: '是否开启AI功能',
+    rootEnableUnExpand: '根节点是否允许收起下级'
   },
   color: {
     moreColor: '更多颜色'

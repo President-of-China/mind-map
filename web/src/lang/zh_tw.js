@@ -88,7 +88,8 @@ export default {
     enableAutoEnterTextEditWhenKeydown: '鍵盤輸入時自動進入文本編輯',
     enableInheritAncestorLineStyle: '節點連線樣式繼承祖先節點的樣式',
     alwaysShowExpandBtn: '是否壹直顯示展開收起按鈕',
-    enableAi: '是否開啓AI功能'
+    enableAi: '是否開啓AI功能',
+    rootEnableUnExpand: '根節點是否允許收起下級'
   },
   color: {
     moreColor: '更多顏色'

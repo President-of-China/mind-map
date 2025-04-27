@@ -92,7 +92,8 @@ export default {
     textContentMargin: 'Khoảng cách nội dung nút',
     enableInheritAncestorLineStyle:
       'Kiểu kết nối nút kế thừa kiểu của nút tổ tiên',
-    enableAi: 'Bật chức năng AI'
+    enableAi: 'Bật chức năng AI',
+    rootEnableUnExpand: 'Liệu root node có cho phép thu hồi cấp dưới hay không?'
   },
   color: {
     moreColor: 'Thêm màu'
