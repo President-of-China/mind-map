@@ -180,9 +180,10 @@ class MindMap {
   // 预处理节点数据
   handleData(data) {
     if (isUndef(data) || Object.keys(data).length <= 0) return null
+    const { rootEnableUnExpand } = this.opt
     data = simpleDeepClone(data || {})
     // 根节点不能收起
-    if (data.data && !data.data.expand) {
+    if (!rootEnableUnExpand && data.data && !data.data.expand) {
       data.data.expand = true
     }
     // 给没有uid的节点添加uid

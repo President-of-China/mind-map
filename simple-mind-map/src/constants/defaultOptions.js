@@ -323,6 +323,8 @@ export const defaultOpt = {
   addCustomContentToNode: null,
   // 节点连线样式是否允许继承祖先的连线样式
   enableInheritAncestorLineStyle: true,
+  // 根节点是否支持收起操作，也就是二级节点是否可以被收起来
+  rootEnableUnExpand: false,
 
   // 【Select插件】
   // 多选节点时鼠标移动到边缘时的画布移动偏移量

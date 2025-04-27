@@ -1680,6 +1680,7 @@ class Render {
   //  收起所有
   unexpandAllNode(isSetRootNodeCenter = true, uid = '') {
     if (!this.renderTree) return
+    const { rootEnableUnExpand } = this.mindMap.opt
 
     const _walk = (node, isRoot, enableUnExpand) => {
       // 如果该节点为目标节点，那么修改允许展开的标志
@@ -1688,7 +1689,7 @@ class Render {
       }
       if (
         enableUnExpand &&
-        !isRoot &&
+        (!isRoot || rootEnableUnExpand) &&
         node.children &&
         node.children.length > 0
       ) {
@@ -1733,8 +1734,12 @@ class Render {
 
   //  切换激活节点的展开状态
   toggleActiveExpand() {
+    const { rootEnableUnExpand } = this.mindMap.opt
     this.activeNodeList.forEach(node => {
-      if (node.nodeData.children.length <= 0 || node.isRoot) {
+      if (
+        node.nodeData.children.length <= 0 ||
+        (node.isRoot && !rootEnableUnExpand)
+      ) {
         return
       }
       this.toggleNodeExpand(node)

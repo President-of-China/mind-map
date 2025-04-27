@@ -106,7 +106,8 @@ function updateExpandBtnPos() {
 
 //  创建展开收缩按钮
 function renderExpandBtn() {
-  if (this.getChildrenLength() <= 0 || this.isRoot) {
+  const { rootEnableUnExpand } = this.mindMap.opt
+  if (this.getChildrenLength() <= 0 || (this.isRoot && !rootEnableUnExpand)) {
     return
   }
   if (this._expandBtn) {
