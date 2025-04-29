@@ -1,5 +1,13 @@
 <template>
   <Sidebar ref="sidebar" :title="$t('setting.title')">
+    <template #rightAction>
+      <ConfigImportOutputDropdown
+        type="smm_setting_config"
+        :name="$t('setting.settingConfig')"
+        :getConfig="getOutputConfig"
+        :setConfig="setConfig"
+      ></ConfigImportOutputDropdown>
+    </template>
     <div
       class="sidebarContent customScrollbar"
       :class="{ isDark: isDark }"
@@ -421,11 +429,13 @@ import Sidebar from './Sidebar.vue'
 import { storeConfig } from '@/api'
 import { mapState, mapMutations } from 'vuex'
 import Color from './Color.vue'
+import ConfigImportOutputDropdown from './ConfigImportOutputDropdown.vue'
 
 export default {
   components: {
     Sidebar,
-    Color
+    Color,
+    ConfigImportOutputDropdown
   },
   props: {
     configData: {
@@ -525,8 +535,6 @@ export default {
     // 初始化本地配置
     initLoacalConfig() {
       this.enableNodeRichText = this.localConfig.openNodeRichText
-      this.mousewheelAction = this.localConfig.mousewheelAction
-      this.mousewheelZoomActionReverse = this.localConfig.mousewheelZoomActionReverse
       Object.keys(this.localConfigs).forEach(key => {
         this.localConfigs[key] = this.localConfig[key]
       })
@@ -643,6 +651,43 @@ export default {
 
     onClick(e) {
       this.$bus.$emit('vipCheckClick', e)
+    },
+
+    // 导出配置
+    getOutputConfig() {
+      return {
+        localConfig: this.localConfigs || {},
+        config: this.configData || {}
+      }
+    },
+
+    // 导入配置
+    setConfig({ localConfig, config }) {
+      Object.keys(localConfig).forEach(key => {
+        const value = localConfig[key]
+        if (key === 'openNodeRichText') {
+          this.onToggleOpenNodeRichText(value)
+        } else {
+          this.localConfigs[key] = value
+          this.updateLocalConfig(key, value)
+        }
+      })
+      Object.keys(config).forEach(key => {
+        const value = config[key]
+        if (key === 'demonstrateConfig') {
+          this.config[key] = value
+          this.updateOtherConfig('openBlankMode', value.openBlankMode)
+        } else if (key === 'watermarkConfig') {
+          Object.keys(value).forEach(key2 => {
+            this.watermarkConfig[key2] = value[key2]
+          })
+          this.watermarkConfig.show = !!value.text
+          this.updateWatermarkConfig()
+        } else {
+          this.config[key] = value
+          this.updateOtherConfig(key, value)
+        }
+      })
     }
   }
 }

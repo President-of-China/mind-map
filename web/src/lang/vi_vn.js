@@ -94,7 +94,8 @@ export default {
     enableInheritAncestorLineStyle:
       'Kiểu kết nối nút kế thừa kiểu của nút tổ tiên',
     enableAi: 'Bật chức năng AI',
-    rootEnableUnExpand: 'Liệu root node có cho phép thu hồi cấp dưới hay không?'
+    rootEnableUnExpand: 'Liệu root node có cho phép thu hồi cấp dưới hay không?',
+    settingConfig: 'Thiết lập Mind Map'
   },
   color: {
     moreColor: 'Thêm màu'

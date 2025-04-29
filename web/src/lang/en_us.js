@@ -93,7 +93,8 @@ export default {
     enableInheritAncestorLineStyle:
       'Node connection style inherits the style of ancestor nodes',
     enableAi: 'Is enable AI function',
-    rootEnableUnExpand: 'Does the root node allow the collapse of subordinates'
+    rootEnableUnExpand: 'Does the root node allow the collapse of subordinates',
+    settingConfig: 'MindmapSetting'
   },
   color: {
     moreColor: 'More color'

@@ -89,7 +89,8 @@ export default {
     imgTextMargin: '节点图片和文本间隔',
     textContentMargin: '节点各种内容间隔',
     enableAi: '是否开启AI功能',
-    rootEnableUnExpand: '根节点是否允许收起下级'
+    rootEnableUnExpand: '根节点是否允许收起下级',
+    settingConfig: '思绪思维导图设置'
   },
   color: {
     moreColor: '更多颜色'
