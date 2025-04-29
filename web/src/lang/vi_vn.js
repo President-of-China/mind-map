@@ -375,7 +375,9 @@ export default {
     tryTipDesc:
       'Chức năng này là chức năng dùng thử trong phiên bản web, xin vui lòng tải xuống để khách hàng sử dụng:',
     downBaidu: 'Tải xuống Baidu',
-    downGithub: 'Tải xuống Github'
+    downGithub: 'Tải xuống Github',
+    painterTip: 'Nhấp vào khoảng trống Canvas để hủy hoặc kết thúc',
+    createAssociativeLineTip: 'Nhấp vào Canvas Blank để hủy'
   },
   mouseAction: {
     tip1:

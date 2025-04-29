@@ -337,10 +337,12 @@ export default {
 
     handleCreateLineFromActiveNode() {
       this.mindMap.associativeLine.createLineFromActiveNode()
+      this.$message.info(this.$t('edit.createAssociativeLineTip'))
     },
 
     handleStartPainter() {
       this.mindMap.painter.startPainter()
+      this.$message.info(this.$t('edit.painterTip'))
     },
 
     handleResize() {

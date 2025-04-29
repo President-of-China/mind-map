@@ -365,7 +365,9 @@ export default {
     tryTipTitle: '功能试用提示',
     tryTipDesc: '该功能在网页版中为试用功能，请下载客户端使用：',
     downBaidu: '去百度网盘下载',
-    downGithub: '去Github下载'
+    downGithub: '去Github下载',
+    painterTip: '点击画布空白处取消或结束',
+    createAssociativeLineTip: '点击画布空白处取消'
   },
   mouseAction: {
     tip1: '当前：左键拖动画布，右键框选节点',

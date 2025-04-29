@@ -377,7 +377,9 @@ export default {
     tryTipDesc:
       'This feature is a trial feature in the web version. Please download the client to use it:',
     downBaidu: 'Go to Baidu Netdisk to download',
-    downGithub: 'Download from Github'
+    downGithub: 'Download from Github',
+    painterTip: 'Click on the blank space on the canvas to cancel or end',
+    createAssociativeLineTip: 'Click on the blank space on the canvas to cancel'
   },
   mouseAction: {
     tip1:
