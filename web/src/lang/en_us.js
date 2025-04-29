@@ -42,7 +42,8 @@ export default {
     notUseRainbowLines: 'Not use rainbow lines',
     outerFramePadding: 'Outer frame padding',
     associativeLineStyle: 'Associative line style',
-    builtInBackgroundImage: 'Built in background image'
+    builtInBackgroundImage: 'Built in background image',
+    baseStyleConfig: 'BasicStyleConfigurationForMindMapping'
   },
   setting: {
     title: 'Setting',

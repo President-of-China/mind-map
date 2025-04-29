@@ -41,7 +41,8 @@ export default {
     notUseRainbowLines: '不使用彩虹线条',
     outerFramePadding: '外框内边距',
     associativeLineStyle: '关联线样式',
-    builtInBackgroundImage: '内置背景图片'
+    builtInBackgroundImage: '内置背景图片',
+    baseStyleConfig: '思绪思维导图基础样式配置'
   },
   setting: {
     title: '设置',
@@ -525,5 +526,13 @@ export default {
     tip3: '链接成功',
     tip4: '删除成功',
     tip5: '链接节点不存在，是否删除该链接？'
+  },
+  ciod: {
+    outputConfig: '导出配置',
+    importConfig: '导入配置',
+    tip1: '请选择json文件',
+    tip2: '文件内容格式不正确',
+    tip3: '导入成功',
+    tip4: '导入失败'
   }
 }

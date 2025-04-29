@@ -85,7 +85,7 @@ export const printOutline = el => {
 }
 
 export const getParentWithClass = (el, className) => {
-  if (el.classList.contains(className)) {
+  if (el.classList && el.classList.contains(className)) {
     return el
   }
   if (el.parentNode && el.parentNode !== document.body) {

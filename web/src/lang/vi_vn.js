@@ -42,7 +42,8 @@ export default {
     notUseRainbowLines: 'Không sử dụng đường cầu vồng',
     outerFramePadding: 'Đệm khung ngoài',
     associativeLineStyle: 'Kiểu đường liên kết',
-    builtInBackgroundImage: 'Hình nền tích hợp'
+    builtInBackgroundImage: 'Hình nền tích hợp',
+    baseStyleConfig: 'Sơ đồ Tư duy Tư duy Cấu hình Kiểu dáng Cơ bản'
   },
   setting: {
     title: 'Cài đặt',

@@ -1,5 +1,13 @@
 <template>
   <Sidebar ref="sidebar" :title="$t('baseStyle.title')">
+    <template #rightAction>
+      <ConfigImportOutputDropdown
+        type="smm_base_style_config"
+        :name="$t('baseStyle.baseStyleConfig')"
+        :getConfig="getOutputConfig"
+        :setConfig="setConfig"
+      ></ConfigImportOutputDropdown>
+    </template>
     <div
       class="sidebarContent customScrollbar"
       :class="{ isDark: isDark }"
@@ -104,7 +112,9 @@
               style="margin-top: 8px; margin-bottom: 8px;"
               v-if="bgList.length > 0"
             >
-              <div class="name">{{ $t('baseStyle.builtInBackgroundImage') }}</div>
+              <div class="name">
+                {{ $t('baseStyle.builtInBackgroundImage') }}
+              </div>
               <div
                 class="iconBtn el-icon-arrow-down"
                 :class="{ top: !bgListExpand }"
@@ -116,7 +126,7 @@
                 class="bgItem"
                 v-for="(item, index) in bgList"
                 :key="index"
-                :class="{active: style.backgroundImage === item}"
+                :class="{ active: style.backgroundImage === item }"
                 @click="useBg(item)"
               >
                 <img :src="item" alt="" />
@@ -856,13 +866,15 @@ import {
   supportRootLineKeepSameInCurveLayouts,
   rainbowLinesOptions
 } from '@/config/constant'
+import ConfigImportOutputDropdown from './ConfigImportOutputDropdown.vue'
 
 // 基础样式
 export default {
   components: {
     Sidebar,
     Color,
-    ImgUpload
+    ImgUpload,
+    ConfigImportOutputDropdown
   },
   props: {
     data: {
@@ -1132,8 +1144,40 @@ export default {
       })
     },
 
+    // 使用背景
     useBg(bg) {
       this.update('backgroundImage', bg)
+    },
+
+    // 导出配置
+    getOutputConfig() {
+      return {
+        themeStyle: this.style || {},
+        config: this.configData || {}
+      }
+    },
+
+    // 导入配置
+    setConfig({ themeStyle, config }) {
+      Object.keys(themeStyle).forEach(key => {
+        if (['marginX', 'marginY'].includes(key)) {
+          this.updateMargin(key, themeStyle[key])
+        } else {
+          this.update(key, themeStyle[key])
+        }
+      })
+      Object.keys(config).forEach(key => {
+        if (['outerFramePaddingX', 'outerFramePaddingY'].includes(key)) {
+          this.updateOuterFramePadding(key, config[key])
+        } else if (key === 'rainbowLinesConfig') {
+          const value = config[key]
+          const data = {}
+          if (value.open) {
+            data.list = value.colorsList
+          }
+          this.updateRainbowLinesConfig(data)
+        }
+      })
     }
   }
 }

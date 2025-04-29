@@ -5,6 +5,9 @@
     :class="{ show: show, isDark: isDark }"
     :style="{ zIndex: zIndex }"
   >
+    <div class="rightAction">
+      <slot name="rightAction"></slot>
+    </div>
     <span class="closeBtn el-icon-close" @click="close"></span>
     <div class="sidebarHeader" v-if="title">
       {{ title }}
@@ -99,6 +102,15 @@ export default {
 
   &.show {
     right: 0;
+  }
+  
+  .rightAction {
+    height: 44px;
+    position: absolute;
+    top: 0;
+    right: 50px;
+    display: flex;
+    align-items: center;
   }
 
   .closeBtn {

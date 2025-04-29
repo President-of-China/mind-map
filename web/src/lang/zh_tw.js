@@ -42,7 +42,8 @@ export default {
     notUseRainbowLines: '不使用彩虹線條',
     outerFramePadding: '外框內距',
     associativeLineStyle: '關聯線樣式',
-    builtInBackgroundImage: '內置背景圖片'
+    builtInBackgroundImage: '內置背景圖片',
+    baseStyleConfig: '思緒心智圖基礎樣式配寘'
   },
   setting: {
     title: '設置',
