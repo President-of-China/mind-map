@@ -5,6 +5,7 @@
     :style="style"
     :class="{ isDark: isDark }"
     @click.stop.passive
+    @mousedown.stop.prevent
     v-show="showRichTextToolbar"
   >
     <el-tooltip :content="$t('richTextToolbar.bold')" placement="top">
