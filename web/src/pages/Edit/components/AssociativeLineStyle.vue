@@ -10,7 +10,7 @@
             v-popover:popover4
             :style="{ backgroundColor: style.associativeLineColor }"
           ></span>
-          <el-popover ref="popover4" placement="bottom" trigger="click">
+          <el-popover ref="popover4" placement="bottom" trigger="hover">
             <Color
               :color="style.associativeLineColor"
               @change="
@@ -60,7 +60,7 @@
             v-popover:popover5
             :style="{ backgroundColor: style.associativeLineActiveColor }"
           ></span>
-          <el-popover ref="popover5" placement="bottom" trigger="click">
+          <el-popover ref="popover5" placement="bottom" trigger="hover">
             <Color
               :color="style.associativeLineActiveColor"
               @change="
@@ -173,7 +173,7 @@
             v-popover:popover6
             :style="{ backgroundColor: style.associativeLineTextColor }"
           ></span>
-          <el-popover ref="popover6" placement="bottom" trigger="click">
+          <el-popover ref="popover6" placement="bottom" trigger="hover">
             <Color
               :color="style.associativeLineTextColor"
               @change="

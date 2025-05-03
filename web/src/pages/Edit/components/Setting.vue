@@ -67,7 +67,7 @@
               v-popover:popover3
               :style="{ backgroundColor: watermarkConfig.textStyle.color }"
             ></span>
-            <el-popover ref="popover3" placement="bottom" trigger="click">
+            <el-popover ref="popover3" placement="bottom" trigger="hover">
               <Color
                 :color="watermarkConfig.textStyle.color"
                 @change="

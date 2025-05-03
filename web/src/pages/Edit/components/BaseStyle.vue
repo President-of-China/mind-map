@@ -145,7 +145,7 @@
             v-popover:popover
             :style="{ backgroundColor: style.lineColor }"
           ></span>
-          <el-popover ref="popover" placement="bottom" trigger="click">
+          <el-popover ref="popover" placement="bottom" trigger="hover">
             <Color
               :color="style.lineColor"
               @change="
@@ -372,7 +372,7 @@
         <div class="rowItem">
           <el-popover
             placement="right"
-            trigger="click"
+            trigger="hover"
             v-model="rainbowLinesPopoverVisible"
           >
             <div class="rainbowLinesOptionsBox" :class="{ isDark: isDark }">
@@ -420,7 +420,7 @@
             v-popover:popover2
             :style="{ backgroundColor: style.generalizationLineColor }"
           ></span>
-          <el-popover ref="popover2" placement="bottom" trigger="click">
+          <el-popover ref="popover2" placement="bottom" trigger="hover">
             <Color
               :color="style.generalizationLineColor"
               @change="
@@ -470,7 +470,7 @@
             v-popover:popover4
             :style="{ backgroundColor: style.associativeLineColor }"
           ></span>
-          <el-popover ref="popover4" placement="bottom" trigger="click">
+          <el-popover ref="popover4" placement="bottom" trigger="hover">
             <Color
               :color="style.associativeLineColor"
               @change="
@@ -520,7 +520,7 @@
             v-popover:popover5
             :style="{ backgroundColor: style.associativeLineActiveColor }"
           ></span>
-          <el-popover ref="popover5" placement="bottom" trigger="click">
+          <el-popover ref="popover5" placement="bottom" trigger="hover">
             <Color
               :color="style.associativeLineActiveColor"
               @change="
@@ -633,7 +633,7 @@
             v-popover:popover6
             :style="{ backgroundColor: style.associativeLineTextColor }"
           ></span>
-          <el-popover ref="popover6" placement="bottom" trigger="click">
+          <el-popover ref="popover6" placement="bottom" trigger="hover">
             <Color
               :color="style.associativeLineTextColor"
               @change="

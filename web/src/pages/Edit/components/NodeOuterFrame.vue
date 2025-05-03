@@ -98,7 +98,7 @@
               v-popover:popover
               :style="{ backgroundColor: styleConfig.strokeColor }"
             ></span>
-            <el-popover ref="popover" placement="bottom" trigger="click">
+            <el-popover ref="popover" placement="bottom" trigger="hover">
               <Color
                 :color="styleConfig.strokeColor"
                 @change="
@@ -140,7 +140,7 @@
               v-popover:popover2
               :style="{ backgroundColor: styleConfig.fill }"
             ></span>
-            <el-popover ref="popover2" placement="bottom" trigger="click">
+            <el-popover ref="popover2" placement="bottom" trigger="hover">
               <Color
                 :color="styleConfig.fill"
                 @change="
@@ -294,7 +294,7 @@
               v-popover:popover4
               :style="{ backgroundColor: styleConfig.textFill }"
             ></span>
-            <el-popover ref="popover4" placement="bottom" trigger="click">
+            <el-popover ref="popover4" placement="bottom" trigger="hover">
               <Color
                 :color="styleConfig.textFill"
                 @change="
