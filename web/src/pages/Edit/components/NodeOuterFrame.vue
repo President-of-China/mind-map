@@ -189,7 +189,7 @@
           <div class="btnGroup">
             <el-tooltip
               :content="$t('nodeOuterFrame.color')"
-              placement="bottom"
+              placement="top"
             >
               <div class="styleBtn" v-popover:popover3>
                 A
@@ -201,7 +201,7 @@
             </el-tooltip>
             <el-tooltip
               :content="$t('nodeOuterFrame.fontBold')"
-              placement="bottom"
+              placement="top"
             >
               <div
                 class="styleBtn"
@@ -215,7 +215,7 @@
             </el-tooltip>
             <el-tooltip
               :content="$t('nodeOuterFrame.italic')"
-              placement="bottom"
+              placement="top"
             >
               <div
                 class="styleBtn i"

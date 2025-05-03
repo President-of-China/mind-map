@@ -67,7 +67,7 @@
         </div>
         <div class="row">
           <div class="btnGroup">
-            <el-tooltip :content="$t('style.color')" placement="bottom">
+            <el-tooltip :content="$t('style.color')" placement="top">
               <div class="styleBtn" v-popover:popover>
                 A
                 <span
@@ -76,7 +76,7 @@
                 ></span>
               </div>
             </el-tooltip>
-            <el-tooltip :content="$t('style.addFontWeight')" placement="bottom">
+            <el-tooltip :content="$t('style.addFontWeight')" placement="top">
               <div
                 class="styleBtn"
                 :class="{
@@ -87,7 +87,7 @@
                 B
               </div>
             </el-tooltip>
-            <el-tooltip :content="$t('style.italic')" placement="bottom">
+            <el-tooltip :content="$t('style.italic')" placement="top">
               <div
                 class="styleBtn i"
                 :class="{
@@ -100,7 +100,7 @@
             </el-tooltip>
             <el-tooltip
               :content="$t('style.textDecoration')"
-              placement="bottom"
+              placement="top"
             >
               <div
                 class="styleBtn u"
