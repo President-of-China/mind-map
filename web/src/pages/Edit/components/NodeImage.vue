@@ -6,15 +6,16 @@
     :width="isMobile ? '90%' : '600px'"
     :top="isMobile ? '20px' : '15vh'"
   >
-    <div class="title">方式一</div>
+    <div class="tip">{{ $t('nodeImage.tip') }}</div>
+    <div class="title">{{ $t('nodeImage.method1') }}</div>
     <ImgUpload
       ref="ImgUpload"
       v-model="img"
       style="margin-bottom: 12px;"
     ></ImgUpload>
-    <div class="title">方式二</div>
+    <div class="title">{{ $t('nodeImage.method2') }}</div>
     <div class="inputBox">
-      <span class="label">请输入图片地址</span>
+      <span class="label">{{ $t('nodeImage.tip2') }}</span>
       <el-input
         v-model="imgUrl"
         size="mini"
@@ -22,7 +23,7 @@
         @keydown.native.stop
       ></el-input>
     </div>
-    <div class="title">可选</div>
+    <div class="title">{{ $t('nodeImage.optional') }}</div>
     <div class="inputBox">
       <span class="label">{{ $t('nodeImage.imgTitle') }}</span>
       <el-input v-model="imgTitle" size="mini" @keydown.native.stop></el-input>
@@ -134,6 +135,16 @@ export default {
 
 <style lang="less" scoped>
 .nodeImageDialog {
+  /deep/ .el-dialog__body {
+    padding: 20px;
+    padding-top: 0;
+  }
+
+  .tip {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
   .title {
     font-size: 18px;
     margin-bottom: 12px;

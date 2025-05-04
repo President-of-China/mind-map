@@ -94,7 +94,8 @@ export default {
     enableInheritAncestorLineStyle:
       'Kiểu kết nối nút kế thừa kiểu của nút tổ tiên',
     enableAi: 'Bật chức năng AI',
-    rootEnableUnExpand: 'Liệu root node có cho phép thu hồi cấp dưới hay không?',
+    rootEnableUnExpand:
+      'Liệu root node có cho phép thu hồi cấp dưới hay không?',
     settingConfig: 'Thiết lập Mind Map'
   },
   color: {
@@ -230,7 +231,13 @@ export default {
   },
   nodeImage: {
     title: 'Hình ảnh',
-    imgTitle: 'Tiêu đề'
+    imgTitle: 'Tiêu đề',
+    tip:
+      'Mẹo: Nếu bạn muốn dán hình ảnh, bạn không cần phải mở cửa sổ bật, chỉ cần nhấn Ctrl+v để dán sau khi kích hoạt nút.',
+    method1: 'Cách 1',
+    method2: 'Cách 2',
+    tip2: 'Vui lòng nhập địa chỉ ảnh',
+    optional: 'Tùy chọn'
   },
   nodeNote: {
     title: 'Ghi chú'
@@ -547,5 +554,16 @@ export default {
     tip3: 'Liên kết thành công',
     tip4: 'Xóa thành công',
     tip5: 'Nút liên kết không tồn tại. Có nên xóa liên kết không?'
+  },
+  ciod: {
+    outputConfig: 'Cấu hình xuất',
+    importConfig: 'Cấu hình nhập',
+    tip1: 'Vui lòng chọn file json',
+    tip2: 'Định dạng nội dung tập tin không chính xác',
+    tip3: 'Nhập thành công',
+    tip4: 'Nhập thất bại'
+  },
+  imageUpload: {
+    tip: 'Nhấn vào đây để chọn ảnh hoặc kéo ảnh đến đây'
   }
 }

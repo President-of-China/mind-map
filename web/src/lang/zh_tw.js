@@ -226,7 +226,13 @@ export default {
   },
   nodeImage: {
     title: '圖片',
-    imgTitle: '圖片標題'
+    imgTitle: '圖片標題',
+    tip:
+      'tips：如果你是要粘貼圖片，那麼不需要打開該彈窗，直接啟動節點後按Ctrl+v粘貼即可。',
+    method1: '管道一',
+    method2: '管道二',
+    tip2: '請輸入圖片地址',
+    optional: '可選'
   },
   nodeNote: {
     title: '備註'
@@ -529,5 +535,16 @@ export default {
     tip3: '鏈接成功',
     tip4: '刪除成功',
     tip5: '鏈接節點不存在，是否刪除該鏈接？'
+  },
+  ciod: {
+    outputConfig: '匯出配寘',
+    importConfig: '導入配寘',
+    tip1: '請選擇json檔案',
+    tip2: '檔案內容格式不正確',
+    tip3: '導入成功',
+    tip4: '導入失敗'
+  },
+  imageUpload: {
+    tip: '點擊此處選擇圖片、或拖動圖片到此'
   }
 }

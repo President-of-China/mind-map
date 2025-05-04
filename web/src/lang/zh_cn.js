@@ -225,7 +225,13 @@ export default {
   },
   nodeImage: {
     title: '图片',
-    imgTitle: '图片标题'
+    imgTitle: '图片标题',
+    tip:
+      'tips：如果你是要粘贴图片，那么不需要打开该弹窗，直接激活节点后按Ctrl+v粘贴即可。',
+    method1: '方式一',
+    method2: '方式二',
+    tip2: '请输入图片地址',
+    optional: '可选'
   },
   nodeNote: {
     title: '备注'
@@ -537,5 +543,8 @@ export default {
     tip2: '文件内容格式不正确',
     tip3: '导入成功',
     tip4: '导入失败'
+  },
+  imageUpload: {
+    tip: '点击此处选择图片、或拖动图片到此'
   }
 }

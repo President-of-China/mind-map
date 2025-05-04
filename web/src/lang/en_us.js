@@ -231,7 +231,13 @@ export default {
   },
   nodeImage: {
     title: 'Image',
-    imgTitle: 'Title'
+    imgTitle: 'Title',
+    tip:
+      "Tip: If you want to paste an image, you don't need to open this pop-up window. Simply activate the node and press Ctrl+v to paste.",
+    method1: 'Method 1',
+    method2: 'Method 2',
+    tip2: 'Please enter the image address',
+    optional: 'Optional'
   },
   nodeNote: {
     title: 'Note'
@@ -549,5 +555,16 @@ export default {
     tip3: 'Link successful',
     tip4: 'Delete successful',
     tip5: 'The link node does not exist. Weather to delete the link?'
+  },
+  ciod: {
+    outputConfig: 'Export Configuration',
+    importConfig: 'Import configuration',
+    tip1: 'Please select a JSON file',
+    tip2: 'The file content format is incorrect',
+    tip3: 'Import was successful',
+    tip4: 'Import failed'
+  },
+  imageUpload: {
+    tip: 'Click here to select an image, or drag an image here'
   }
 }
