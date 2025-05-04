@@ -232,7 +232,7 @@ export default {
   },
   nodeTag: {
     title: '标签',
-    addTip: '请按回车键添加'
+    addTip: '请按回车键添加，最多可添加五个标签'
   },
   outline: {
     title: '大纲',

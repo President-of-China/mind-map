@@ -63,6 +63,7 @@ export default {
     this.mindMap.on('translate', this.hide)
     this.mindMap.on('svg_mousedown', this.hide)
     this.mindMap.on('expand_btn_click', this.hide)
+    this.$bus.$on('showNodeTag', this.hide)
   },
   beforeDestroy() {
     this.mindMap.off('node_tag_click', this.onNodeTagClick)
@@ -70,6 +71,7 @@ export default {
     this.mindMap.off('translate', this.hide)
     this.mindMap.off('svg_mousedown', this.hide)
     this.mindMap.off('expand_btn_click', this.hide)
+    this.$bus.$off('showNodeTag', this.hide)
   },
   mounted() {
     document.body.appendChild(this.$refs.elRef)

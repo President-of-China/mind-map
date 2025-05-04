@@ -237,7 +237,7 @@ export default {
   },
   nodeTag: {
     title: 'Thẻ',
-    addTip: 'Nhấn Enter để thêm'
+    addTip: 'Vui lòng nhấn Enter để thêm tối đa 5 tab'
   },
   outline: {
     title: 'Dàn bài',

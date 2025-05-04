@@ -233,7 +233,7 @@ export default {
   },
   nodeTag: {
     title: '標籤',
-    addTip: '請按 Enter 鍵新增'
+    addTip: '請按回車鍵添加，最多可添加五個標籤'
   },
   outline: {
     title: '大綱',

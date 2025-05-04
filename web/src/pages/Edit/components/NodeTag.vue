@@ -20,11 +20,9 @@
         class="tagItem"
         v-for="(item, index) in tagArr"
         :key="index"
-        :style="{
-          backgroundColor: generateColorByContent(item)
-        }"
+        :style="getTagStyle(item)"
       >
-        {{ typeof item === 'string' ? item : item.text }}
+        {{ item.text }}
         <div class="delBtn" @click="del(index)">
           <span class="iconfont iconshanchu"></span>
         </div>
@@ -62,6 +60,9 @@ export default {
       if (!val && oldVal) {
         this.$bus.$emit('endTextEdit')
       }
+      if (val && !oldVal) {
+        this.handleNodeActive('', this.activeNodes)
+      }
     }
   },
   created() {
@@ -79,10 +80,31 @@ export default {
       this.activeNodes = [...args[1]]
       if (this.activeNodes.length > 0) {
         let firstNode = this.activeNodes[0]
-        this.tagArr = firstNode.getData('tag') || []
+        this.tagArr = (firstNode.getData('tag') || []).map(item => {
+          const data = {
+            text: typeof item === 'string' ? item : item.text
+          }
+          if (item.style) {
+            data.style = {
+              ...item.style
+            }
+          }
+          return data
+        })
       } else {
         this.tagArr = []
         this.tag = ''
+      }
+    },
+
+    getTagStyle(item) {
+      const style = item.style || {}
+      return {
+        backgroundColor: style.fill || generateColorByContent(item.text),
+        borderRadius: (style.radius || 3) + 'px',
+        fontSize: (style.fontSize || 12) + 'px',
+        height: (style.height || 20) + 'px',
+        padding: `0 ${style.paddingX || 8}px`
       }
     },
 
@@ -94,7 +116,10 @@ export default {
     add() {
       const text = this.tag.trim()
       if (!text) return
-      this.tagArr.push(text)
+      const data = {
+        text
+      }
+      this.tagArr.push(data)
       this.tag = ''
     },
 
@@ -108,7 +133,7 @@ export default {
 
     confirm() {
       this.activeNodes.forEach(node => {
-        node.setTag(this.tagArr)
+        node.setTag(JSON.parse(JSON.stringify(this.tagArr)))
       })
       this.cancel()
     }
@@ -125,10 +150,11 @@ export default {
 
     .tagItem {
       position: relative;
-      padding: 3px 5px;
       margin-right: 5px;
       margin-bottom: 5px;
       color: #fff;
+      display: flex;
+      align-items: center;
 
       .delBtn {
         position: absolute;

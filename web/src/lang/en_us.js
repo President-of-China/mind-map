@@ -238,7 +238,7 @@ export default {
   },
   nodeTag: {
     title: 'Tag',
-    addTip: 'Press Enter to add'
+    addTip: 'Please press Enter to add, up to five labels can be added'
   },
   outline: {
     title: 'Outline',
