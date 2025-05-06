@@ -389,9 +389,9 @@ export default {
   },
   mouseAction: {
     tip1:
-      'Hiện tại: Nhấp chuột trái để kéo canvas, nhấp chuột phải để chọn nút theo hộp',
+      'Hiện tại: Nhấp chuột trái để kéo canvas, nhấp chuột phải để chọn nút theo hộp. Nhấn để chuyển đổi',
     tip2:
-      'Hiện tại: Nhấp chuột trái để chọn nút theo hộp, nhấp chuột phải để kéo canvas'
+      'Hiện tại: Nhấp chuột trái để chọn nút theo hộp, nhấp chuột phải để kéo canvas. Nhấn để chuyển đổi'
   },
   search: {
     searchPlaceholder: 'Nhập nội dung tìm kiếm và nhấn Enter',

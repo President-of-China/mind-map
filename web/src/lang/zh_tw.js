@@ -377,8 +377,8 @@ export default {
     createAssociativeLineTip: '點擊畫布空白處取消'
   },
   mouseAction: {
-    tip1: '目前：左鍵拖曳畫布，右鍵框選節點',
-    tip2: '目前：左鍵框選節點，右鍵拖曳畫布'
+    tip1: '目前：左鍵拖曳畫布，右鍵框選節點。點擊可切換',
+    tip2: '目前：左鍵框選節點，右鍵拖曳畫布。點擊可切換'
   },
   search: {
     searchPlaceholder: '輸入查找內容後按回車鍵',

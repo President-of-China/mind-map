@@ -390,9 +390,9 @@ export default {
   },
   mouseAction: {
     tip1:
-      'Current: Left click to drag the canvas, right click to box select nodes',
+      'Current: Left click to drag the canvas, right click to box select nodes. Click to switch',
     tip2:
-      'Current: Left click to box select nodes, right click to drag the canvas'
+      'Current: Left click to box select nodes, right click to drag the canvas. Click to switch'
   },
   search: {
     searchPlaceholder: 'Enter the search content and press Enter',

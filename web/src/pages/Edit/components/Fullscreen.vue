@@ -21,6 +21,7 @@
 
 <script>
 import { fullscrrenEvent, fullScreen } from '@/utils'
+import { mapState, mapMutations } from 'vuex'
 
 // 全屏
 export default {
@@ -33,18 +34,38 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      isSetReadOnly: false
+    }
+  },
+  computed: {
+    ...mapState({
+      isReadonly: state => state.isReadonly
+    })
   },
   created() {
     document[fullscrrenEvent] = () => {
+      if (!document.fullscreenElement && this.isSetReadOnly) {
+        this.isSetReadOnly = false
+        this.setIsReadonly(false)
+        this.mindMap.setMode('edit')
+      }
       setTimeout(() => {
         this.mindMap.resize()
       }, 1000)
     }
   },
   methods: {
+    ...mapMutations(['setIsReadonly']),
+
     // 全屏查看
     toFullscreenShow() {
+      // 如果当前是非只读，那么先切换成只读模式
+      if (!this.isReadonly) {
+        this.isSetReadOnly = true
+        this.setIsReadonly(true)
+        this.mindMap.setMode('readonly')
+      }
       fullScreen(this.mindMap.el)
     },
 
@@ -63,7 +84,7 @@ export default {
 
   &.isDark {
     .btn {
-      color: hsla(0,0%,100%,.6);
+      color: hsla(0, 0%, 100%, 0.6);
     }
   }
 
