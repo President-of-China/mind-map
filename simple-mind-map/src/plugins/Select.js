@@ -48,10 +48,10 @@ class Select {
     let { useLeftKeySelectionRightKeyDrag } = this.mindMap.opt
     if (
       !(e.ctrlKey || e.metaKey) &&
-      (useLeftKeySelectionRightKeyDrag// 是否开启了左键多选节点右键拖动画布
-        ? e.which !== 1 ||// 非左键直接返回
-          (e.which === 1 && this.mindMap.keyCommand.currentIsKey('Spacebar'))// 是左键+空格也返回，因为是拖动画布
-        : e.which !== 3)// 非右键直接返回
+      (useLeftKeySelectionRightKeyDrag // 是否开启了左键多选节点右键拖动画布
+        ? e.which !== 1 || // 非左键直接返回
+          (e.which === 1 && this.mindMap.keyCommand.currentIsKey('Spacebar')) // 是左键+空格也返回，因为是拖动画布
+        : e.which !== 3) // 非右键直接返回
     ) {
       return
     }
@@ -98,7 +98,7 @@ class Select {
             [this.mouseDownX, this.mouseMoveY]
           ])
         }
-        this.checkInNodes()
+        this.checkInNodes(e)
       },
       (dir, step) => {
         switch (dir) {
@@ -179,7 +179,7 @@ class Select {
   }
 
   //  检测在选区里的节点
-  checkInNodes() {
+  checkInNodes(e) {
     let { scaleX, scaleY, translateX, translateY } =
       this.mindMap.draw.transform()
     let minx = Math.min(this.mouseDownX, this.mouseMoveX)
@@ -201,7 +201,8 @@ class Select {
         }
         this.mindMap.renderer.addNodeToActiveList(node)
         this.mindMap.renderer.emitNodeActiveEvent()
-      } else if (node.getData('isActive')) {
+      } else {
+        if (e && e.ctrlKey) return
         if (!node.getData('isActive')) {
           return
         }
