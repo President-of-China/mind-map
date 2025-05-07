@@ -310,6 +310,7 @@ class AssociativeLine {
     })
     // 点击事件
     clickPath.click(e => {
+      if (this.mindMap.opt.readonly) return
       e.stopPropagation()
       this.setActiveLine({
         path,
