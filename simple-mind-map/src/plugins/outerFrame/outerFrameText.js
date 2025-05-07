@@ -16,10 +16,12 @@ function createText(el, cur, range) {
     }
   }
   g.click(e => {
+    if (this.mindMap.opt.readonly) return
     e.stopPropagation()
     setActive()
   })
   g.on('dblclick', e => {
+    if (this.mindMap.opt.readonly) return
     e.stopPropagation()
     setActive()
     this.showEditTextBox(g)

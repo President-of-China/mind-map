@@ -242,7 +242,8 @@ class OuterFrame {
       ...styleConfig,
       strokeDasharray: 'none'
     })
-    const text = this.getText(firstNode) || this.mindMap.opt.defaultOuterFrameText
+    const text =
+      this.getText(firstNode) || this.mindMap.opt.defaultOuterFrameText
     this.renderText(text, el, textNode, node, range)
   }
 
@@ -316,6 +317,7 @@ class OuterFrame {
             this.textNodeList.push(textNode)
             this.renderText(this.getText(nodeList[0]), el, textNode, cur, range)
             el.on('click', e => {
+              if (this.mindMap.opt.readonly) return
               e.stopPropagation()
               this.setActiveOuterFrame(el, cur, range, textNode)
             })
