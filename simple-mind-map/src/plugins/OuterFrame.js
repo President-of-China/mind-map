@@ -368,11 +368,11 @@ class OuterFrame {
   clearActiveOuterFrame() {
     if (!this.activeOuterFrame) return
     const { el, textNode, node, range } = this.activeOuterFrame
+    // 隐藏文本编辑框
+    this.hideEditTextBox()
     el.stroke({
       dasharray: el.cacheStyle.dasharray || defaultStyle.strokeDasharray
     })
-    // 隐藏文本编辑框
-    this.hideEditTextBox()
     // 如果没有输入过文字，那么隐藏
     if (!this.getText(this.getNodeRangeFirstNode(node, range))) {
       textNode.clear()
