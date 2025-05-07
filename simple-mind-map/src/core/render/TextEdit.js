@@ -425,7 +425,9 @@ export default class TextEdit {
     if (!this.showTextEdit || !this.currentNode) {
       return
     }
-    const rect = this.currentNode._textData.node.node.getBoundingClientRect()
+    const g = this.currentNode._textData.node
+    if (!g.visible()) return
+    const rect = g.node.getBoundingClientRect()
     this.textEditNode.style.minWidth =
       rect.width + this.textNodePaddingX * 2 + 'px'
     this.textEditNode.style.minHeight =

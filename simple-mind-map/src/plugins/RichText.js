@@ -342,6 +342,7 @@ class RichText {
   updateTextEditNode() {
     if (!this.node) return
     const g = this.node._textData.node
+    if (!g.visible()) return
     const rect = g.node.getBoundingClientRect()
     const originWidth = g.attr('data-width')
     const originHeight = g.attr('data-height')
