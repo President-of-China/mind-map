@@ -13,6 +13,7 @@
       effect="dark"
       :content="$t('fullscreen.fullscreenEdit')"
       placement="top"
+      v-if="!isReadonly"
     >
       <div class="btn iconfont iconquanping1" @click="toFullscreenEdit"></div>
     </el-tooltip>

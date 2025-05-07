@@ -187,10 +187,7 @@
         </div>
         <div class="row">
           <div class="btnGroup">
-            <el-tooltip
-              :content="$t('nodeOuterFrame.color')"
-              placement="top"
-            >
+            <el-tooltip :content="$t('nodeOuterFrame.color')" placement="top">
               <div class="styleBtn" v-popover:popover3>
                 A
                 <span
@@ -213,10 +210,7 @@
                 B
               </div>
             </el-tooltip>
-            <el-tooltip
-              :content="$t('nodeOuterFrame.italic')"
-              placement="top"
-            >
+            <el-tooltip :content="$t('nodeOuterFrame.italic')" placement="top">
               <div
                 class="styleBtn i"
                 :class="{

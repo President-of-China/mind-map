@@ -54,7 +54,8 @@ export default {
   },
   computed: {
     ...mapState({
-      isDark: state => state.localConfig.isDark
+      isDark: state => state.localConfig.isDark,
+      isReadonly: state => state.isReadonly
     })
   },
   created() {
@@ -78,6 +79,9 @@ export default {
   },
   methods: {
     onNodeTagClick(node, tag, index, el) {
+      if (this.isReadonly) {
+        return
+      }
       this.node = node
       this.index = index
       if (typeof tag === 'string') {

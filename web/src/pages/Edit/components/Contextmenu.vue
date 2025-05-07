@@ -141,7 +141,11 @@
             : $t('contextmenu.linkToNode')
         }}</span>
       </div>
-      <div class="item vip" @click="exec('REMOVE_LINK_NODE')" v-if="hasNodeLink">
+      <div
+        class="item vip"
+        @click="exec('REMOVE_LINK_NODE')"
+        v-if="hasNodeLink"
+      >
         <span class="name">{{ $t('contextmenu.removeNodeLink') }}</span>
       </div>
       <div class="item" @click="exec('REMOVE_CUSTOM_STYLES')">
@@ -186,7 +190,7 @@
         </div>
       </div>
       <div class="splitLine"></div>
-      <div class="item" @click="exec('RESET_LAYOUT')">
+      <div class="item" @click="exec('RESET_LAYOUT')" v-if="!isReadonly">
         <span class="name">{{ $t('contextmenu.arrangeLayout') }}</span>
         <span class="desc">Ctrl + L</span>
       </div>
@@ -199,7 +203,11 @@
         {{ isZenMode ? '√' : '' }}
       </div>
       <div class="splitLine"></div>
-      <div class="item" @click="exec('REMOVE_ALL_NODE_CUSTOM_STYLES')">
+      <div
+        class="item"
+        @click="exec('REMOVE_ALL_NODE_CUSTOM_STYLES')"
+        v-if="!isReadonly"
+      >
         <span class="name">{{
           $t('contextmenu.removeAllNodeCustomStyles')
         }}</span>
@@ -264,7 +272,8 @@ export default {
       isDark: state => state.localConfig.isDark,
       supportNumbers: state => state.supportNumbers,
       supportCheckbox: state => state.supportCheckbox,
-      enableAi: state => state.localConfig.enableAi
+      enableAi: state => state.localConfig.enableAi,
+      isReadonly: state => state.isReadonly
     }),
     expandList() {
       return [
