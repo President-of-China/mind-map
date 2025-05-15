@@ -13,6 +13,7 @@
       effect="dark"
       :content="$t('fullscreen.fullscreenEdit')"
       placement="top"
+      v-if="!isReadonly"
     >
       <div class="btn iconfont iconquanping1" @click="toFullscreenEdit"></div>
     </el-tooltip>
@@ -21,14 +22,10 @@
 
 <script>
 import { fullscrrenEvent, fullScreen } from '@/utils'
+import { mapState, mapMutations } from 'vuex'
 
-/**
- * @Author: 王林
- * @Date: 2021-06-24 22:53:10
- * @Desc: 全屏
- */
+// 全屏
 export default {
-  name: 'Fullscreen',
   props: {
     mindMap: {
       type: Object
@@ -38,18 +35,38 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      isSetReadOnly: false
+    }
+  },
+  computed: {
+    ...mapState({
+      isReadonly: state => state.isReadonly
+    })
   },
   created() {
     document[fullscrrenEvent] = () => {
+      if (!document.fullscreenElement && this.isSetReadOnly) {
+        this.isSetReadOnly = false
+        this.setIsReadonly(false)
+        this.mindMap.setMode('edit')
+      }
       setTimeout(() => {
         this.mindMap.resize()
       }, 1000)
     }
   },
   methods: {
+    ...mapMutations(['setIsReadonly']),
+
     // 全屏查看
     toFullscreenShow() {
+      // 如果当前是非只读，那么先切换成只读模式
+      if (!this.isReadonly) {
+        this.isSetReadOnly = true
+        this.setIsReadonly(true)
+        this.mindMap.setMode('readonly')
+      }
       fullScreen(this.mindMap.el)
     },
 
@@ -68,7 +85,7 @@ export default {
 
   &.isDark {
     .btn {
-      color: hsla(0,0%,100%,.6);
+      color: hsla(0, 0%, 100%, 0.6);
     }
   }
 

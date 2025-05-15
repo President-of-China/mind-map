@@ -1,4 +1,4 @@
-import { keyMap } from './keyMap'
+import { keyMap, isKey } from './keyMap'
 
 //  快捷按键、命令处理类
 export default class KeyCommand {
@@ -12,7 +12,22 @@ export default class KeyCommand {
     this.shortcutMapCache = {}
     this.isPause = false
     this.isInSvg = false
+    this.isStopCheckInSvg = false
+    this.currentKeyCode = ''
+    this.defaultEnableCheck = this.defaultEnableCheck.bind(this)
     this.bindEvent()
+  }
+
+  // 扩展按键映射
+  extendKeyMap(key, code) {
+    keyMap[key] = code
+  }
+
+  // 从按键映射中删除某个键
+  removeKeyMap(key) {
+    if (typeof keyMap[key] !== 'undefined') {
+      delete keyMap[key]
+    }
   }
 
   //  暂停快捷键响应
@@ -27,34 +42,53 @@ export default class KeyCommand {
 
   //  保存当前注册的快捷键数据，然后清空快捷键数据
   save() {
+    // 当前已经存在缓存数据了，那么直接返回
+    if (Object.keys(this.shortcutMapCache).length > 0) {
+      return
+    }
     this.shortcutMapCache = this.shortcutMap
     this.shortcutMap = {}
   }
 
   //  恢复保存的快捷键数据，然后清空缓存数据
   restore() {
+    // 当前不存在缓存数据，那么直接返回
+    if (Object.keys(this.shortcutMapCache).length <= 0) {
+      return
+    }
     this.shortcutMap = this.shortcutMapCache
     this.shortcutMapCache = {}
+  }
+
+  // 停止对鼠标是否在画布内的检查，前提是开启了enableShortcutOnlyWhenMouseInSvg选项
+  // 库内部节点文本编辑、关联线文本编辑、外框文本编辑前都会暂停检查，否则无法响应回车快捷键用于结束编辑
+  // 如果你新增了额外的文本编辑，也可以在编辑前调用此方法
+  stopCheckInSvg() {
+    const { enableShortcutOnlyWhenMouseInSvg } = this.mindMap.opt
+    if (!enableShortcutOnlyWhenMouseInSvg) return
+    this.isStopCheckInSvg = true
+  }
+
+  // 恢复对鼠标是否在画布内的检查
+  recoveryCheckInSvg() {
+    const { enableShortcutOnlyWhenMouseInSvg } = this.mindMap.opt
+    if (!enableShortcutOnlyWhenMouseInSvg) return
+    this.isStopCheckInSvg = true
   }
 
   //  绑定事件
   bindEvent() {
     this.onKeydown = this.onKeydown.bind(this)
+    this.onKeyup = this.onKeyup.bind(this)
     // 只有当鼠标在画布内才响应快捷键
     this.mindMap.on('svg_mouseenter', () => {
       this.isInSvg = true
     })
     this.mindMap.on('svg_mouseleave', () => {
-      if (this.mindMap.renderer.textEdit.isShowTextEdit()) return
-      if (
-        this.mindMap.associativeLine &&
-        this.mindMap.associativeLine.showTextEdit
-      ) {
-        return
-      }
       this.isInSvg = false
     })
     window.addEventListener('keydown', this.onKeydown)
+    window.addEventListener('keyup', this.onKeyup)
     this.mindMap.on('beforeDestroy', () => {
       this.unBindEvent()
     })
@@ -63,14 +97,54 @@ export default class KeyCommand {
   // 解绑事件
   unBindEvent() {
     window.removeEventListener('keydown', this.onKeydown)
+    window.removeEventListener('keyup', this.onKeyup)
+  }
+
+  // 根据事件目标判断是否响应快捷键事件
+  defaultEnableCheck(e) {
+    const target = e.target
+    if (target === document.body) return true
+    for (let i = 0; i < this.mindMap.editNodeClassList.length; i++) {
+      const cur = this.mindMap.editNodeClassList[i]
+      if (target.classList.contains(cur)) {
+        return true
+      }
+    }
+    return false
+  }
+
+  // 当前键盘是否存在按下的按键，是的的话判断按键是否只指定按键
+  // keyName：键名称，比如：Enter、Spacebar等，完整名称列表可通过以下方法打印查看：
+  /*
+    import { keyMap } from 'simple-mind-map/src/core/command/keyMap'
+    console.log(keyMap)
+  */
+  currentIsKey(keyName) {
+    return this.currentKeyCode && isKey(this.currentKeyCode, keyName)
+  }
+
+  onKeyup() {
+    this.currentKeyCode = ''
   }
 
   // 按键事件
   onKeydown(e) {
-    const { enableShortcutOnlyWhenMouseInSvg, beforeShortcutRun } = this.mindMap.opt
+    this.currentKeyCode = e.keyCode
+    const {
+      enableShortcutOnlyWhenMouseInSvg,
+      beforeShortcutRun,
+      customCheckEnableShortcut
+    } = this.mindMap.opt
+    const checkFn =
+      typeof customCheckEnableShortcut === 'function'
+        ? customCheckEnableShortcut
+        : this.defaultEnableCheck
+    if (!checkFn(e)) return
     if (
       this.isPause ||
-      (enableShortcutOnlyWhenMouseInSvg && !this.isInSvg)
+      (enableShortcutOnlyWhenMouseInSvg &&
+        !this.isStopCheckInSvg &&
+        !this.isInSvg)
     ) {
       return
     }
@@ -82,7 +156,9 @@ export default class KeyCommand {
           e.preventDefault()
         }
         if (typeof beforeShortcutRun === 'function') {
-          const isStop = beforeShortcutRun(key, [...this.mindMap.renderer.activeNodeList])
+          const isStop = beforeShortcutRun(key, [
+            ...this.mindMap.renderer.activeNodeList
+          ])
           if (isStop) return
         }
         this.shortcutMap[key].forEach(fn => {

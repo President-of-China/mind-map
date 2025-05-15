@@ -3,7 +3,7 @@
     class="nodeTagDialog"
     :title="$t('nodeTag.title')"
     :visible.sync="dialogVisible"
-    :width="isMobile ? '90%' : '50%'"
+    :width="isMobile ? '90%' : '800px'"
     :top="isMobile ? '20px' : '15vh'"
   >
     <el-input
@@ -20,11 +20,9 @@
         class="tagItem"
         v-for="(item, index) in tagArr"
         :key="index"
-        :style="{
-          backgroundColor: generateColorByContent(item)
-        }"
+        :style="getTagStyle(item)"
       >
-        {{ item }}
+        {{ item.text }}
         <div class="delBtn" @click="del(index)">
           <span class="iconfont iconshanchu"></span>
         </div>
@@ -45,13 +43,8 @@ import {
   isMobile
 } from 'simple-mind-map/src/utils/index'
 
-/**
- * @Author: 王林
- * @Date: 2021-06-24 22:54:03
- * @Desc: 节点标签内容设置
- */
+// 节点标签内容设置
 export default {
-  name: 'NodeTag',
   data() {
     return {
       dialogVisible: false,
@@ -66,6 +59,9 @@ export default {
     dialogVisible(val, oldVal) {
       if (!val && oldVal) {
         this.$bus.$emit('endTextEdit')
+      }
+      if (val && !oldVal) {
+        this.handleNodeActive('', this.activeNodes)
       }
     }
   },
@@ -84,10 +80,31 @@ export default {
       this.activeNodes = [...args[1]]
       if (this.activeNodes.length > 0) {
         let firstNode = this.activeNodes[0]
-        this.tagArr = firstNode.getData('tag') || []
+        this.tagArr = (firstNode.getData('tag') || []).map(item => {
+          const data = {
+            text: typeof item === 'string' ? item : item.text
+          }
+          if (item.style) {
+            data.style = {
+              ...item.style
+            }
+          }
+          return data
+        })
       } else {
         this.tagArr = []
         this.tag = ''
+      }
+    },
+
+    getTagStyle(item) {
+      const style = item.style || {}
+      return {
+        backgroundColor: style.fill || generateColorByContent(item.text),
+        borderRadius: (style.radius || 3) + 'px',
+        fontSize: (style.fontSize || 12) + 'px',
+        height: (style.height || 20) + 'px',
+        padding: `0 ${style.paddingX || 8}px`
       }
     },
 
@@ -96,42 +113,27 @@ export default {
       this.dialogVisible = true
     },
 
-    /**
-     * @Author: 王林
-     * @Date: 2021-06-24 21:48:14
-     * @Desc: 添加
-     */
     add() {
-      this.tagArr.push(this.tag)
+      const text = this.tag.trim()
+      if (!text) return
+      const data = {
+        text
+      }
+      this.tagArr.push(data)
       this.tag = ''
     },
 
-    /**
-     * @Author: 王林
-     * @Date: 2021-06-24 21:57:53
-     * @Desc: 删除
-     */
     del(index) {
       this.tagArr.splice(index, 1)
     },
 
-    /**
-     * @Author: 王林
-     * @Date: 2021-06-22 22:08:11
-     * @Desc: 取消
-     */
     cancel() {
       this.dialogVisible = false
     },
 
-    /**
-     * @Author: 王林
-     * @Date: 2021-06-06 22:28:20
-     * @Desc:  确定
-     */
     confirm() {
       this.activeNodes.forEach(node => {
-        node.setTag(this.tagArr)
+        node.setTag(JSON.parse(JSON.stringify(this.tagArr)))
       })
       this.cancel()
     }
@@ -148,10 +150,11 @@ export default {
 
     .tagItem {
       position: relative;
-      padding: 3px 5px;
       margin-right: 5px;
       margin-bottom: 5px;
       color: #fff;
+      display: flex;
+      align-items: center;
 
       .delBtn {
         position: absolute;

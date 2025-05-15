@@ -3,18 +3,19 @@
     class="nodeImageDialog"
     :title="$t('nodeImage.title')"
     :visible.sync="dialogVisible"
-    :width="isMobile ? '90%' : '50%'"
+    :width="isMobile ? '90%' : '600px'"
     :top="isMobile ? '20px' : '15vh'"
   >
-    <div class="title">方式一</div>
+    <div class="tip">{{ $t('nodeImage.tip') }}</div>
+    <div class="title">{{ $t('nodeImage.method1') }}</div>
     <ImgUpload
       ref="ImgUpload"
       v-model="img"
       style="margin-bottom: 12px;"
     ></ImgUpload>
-    <div class="title">方式二</div>
+    <div class="title">{{ $t('nodeImage.method2') }}</div>
     <div class="inputBox">
-      <span class="label">请输入图片地址</span>
+      <span class="label">{{ $t('nodeImage.tip2') }}</span>
       <el-input
         v-model="imgUrl"
         size="mini"
@@ -22,7 +23,7 @@
         @keydown.native.stop
       ></el-input>
     </div>
-    <div class="title">可选</div>
+    <div class="title">{{ $t('nodeImage.optional') }}</div>
     <div class="inputBox">
       <span class="label">{{ $t('nodeImage.imgTitle') }}</span>
       <el-input v-model="imgTitle" size="mini" @keydown.native.stop></el-input>
@@ -37,16 +38,11 @@
 </template>
 
 <script>
-import ImgUpload from '@/components/ImgUpload'
+import ImgUpload from '@/components/ImgUpload/index.vue'
 import { getImageSize, isMobile } from 'simple-mind-map/src/utils/index'
 
-/**
- * @Author: 王林
- * @Date: 2021-06-24 22:53:45
- * @Desc: 节点图片内容设置
- */
+// 节点图片内容设置
 export default {
-  name: 'NodeImage',
   components: {
     ImgUpload
   },
@@ -77,7 +73,7 @@ export default {
       this.reset()
       if (this.activeNodes.length > 0) {
         let firstNode = this.activeNodes[0]
-        let img = firstNode.getData('image') || ''
+        let img = firstNode.getImageUrl() || ''
         if (img) {
           if (/^https?:\/\//.test(img)) {
             this.imgUrl = img
@@ -124,8 +120,8 @@ export default {
           node.setImage({
             url: img || 'none',
             title: this.imgTitle,
-            width: res.width,
-            height: res.height
+            width: res.width || 100,
+            height: res.height || 100
           })
         })
         this.cancel()
@@ -139,6 +135,16 @@ export default {
 
 <style lang="less" scoped>
 .nodeImageDialog {
+  /deep/ .el-dialog__body {
+    padding: 20px;
+    padding-top: 0;
+  }
+
+  .tip {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
   .title {
     font-size: 18px;
     margin-bottom: 12px;
